@@ -105,4 +105,48 @@ function renderJobs() {
     return job.status.toLowerCase() === currentTab;
   });
 
- 
+    if(filtered.length===0){
+    container.innerHTML = `
+      <div class="bg-base-100 rounded-xl p-16 text-center shadow">
+        <div class="text-6xl mb-4">📄</div>
+        <h3 class="text-lg font-semibold">No jobs available</h3>
+        <p class="text-sm text-gray-500">Check back soon for new job opportunities</p>
+      </div>
+    `;
+  } else {
+
+    filtered.forEach(job=>{
+
+      let badgeClass="badge-primary";
+      if(job.status==="Interview") badgeClass="badge-success";
+      if(job.status==="Rejected") badgeClass="badge-error";
+
+      container.innerHTML += `
+        <div class="card bg-base-100 shadow p-6 relative">
+
+          <button onclick="deleteJob(${job.id})"
+            class="btn btn-ghost btn-sm absolute right-4 top-4">🗑</button>
+
+          <h3 class="text-lg font-bold">${job.company}</h3>
+          <p class="font-medium">${job.position}</p>
+
+          <p class="text-sm text-gray-500 my-2">
+            ${job.location} • ${job.type} • ${job.salary}
+          </p>
+
+          <span class="badge ${badgeClass} mb-3">${job.status}</span>
+
+          <p class="mb-4 text-sm">${job.description}</p>
+
+          <div class="space-x-2">
+            <button onclick="updateStatus(${job.id},'Interview')"
+              class="btn btn-success btn-sm">Interview</button>
+
+            <button onclick="updateStatus(${job.id},'Rejected')"
+              class="btn btn-error btn-sm">Rejected</button>
+          </div>
+
+        </div>
+      `;
+    });
+  }
