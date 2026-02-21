@@ -88,3 +88,21 @@ const jobs = [
     status: 'Not Applied',
   },
 ];
+
+let currentTab = 'all';
+
+const container = document.getElementById('jobContainer');
+const totalCount = document.getElementById('totalCount');
+const interviewCount = document.getElementById('interviewCount');
+const rejectedCount = document.getElementById('rejectedCount');
+const jobsCount = document.getElementById('jobsCount');
+
+function renderJobs() {
+  container.innerHTML = '';
+
+  const filtered = jobs.filter(job => {
+    if (currentTab === 'all') return true;
+    return job.status.toLowerCase() === currentTab;
+  });
+
+ 
