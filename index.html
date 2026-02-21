@@ -16,7 +16,27 @@
 <body class="bg-base-200 min-h-screen">
 
   <div class="max-w-6xl mx-auto p-5">
+    <!-- Title -->
     <h1 class="text-3xl font-bold">Job Application Tracker</h1>
+    <!-- Dashboard -->
+    <div class="grid md:grid-cols-3 gap-5 mt-6">
+    
+      <div class="card bg-base-100 shadow p-5">
+        <p>Total</p>
+        <h2 id="totalCount" class="text-2xl font-bold text-primary">0</h2>
+      </div>
+    
+      <div class="card bg-base-100 shadow p-5">
+        <p>Interview</p>
+        <h2 id="interviewCount" class="text-2xl font-bold text-success">0</h2>
+      </div>
+    
+      <div class="card bg-base-100 shadow p-5">
+        <p>Rejected</p>
+        <h2 id="rejectedCount" class="text-2xl font-bold text-error">0</h2>
+      </div>
+    
+    </div>
   </div>
 
 </body>
