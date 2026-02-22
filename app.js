@@ -150,3 +150,31 @@ function renderJobs() {
       `;
     });
   }
+
+   updateDashboard();
+}
+
+function updateStatus(id,status){
+  const job = jobs.find(j=>j.id===id);
+  job.status=status;
+  renderJobs();
+}
+
+function deleteJob(id){
+  const index = jobs.findIndex(j=>j.id===id);
+  jobs.splice(index,1);
+  renderJobs();
+}
+
+function updateDashboard() {
+  totalCount.innerText = jobs.length;
+  interviewCount.innerText = jobs.filter(j => j.status === 'Interview').length;
+  rejectedCount.innerText = jobs.filter(j => j.status === 'Rejected').length;
+
+  const tabCount = jobs.filter(j => {
+    if (currentTab === 'all') return true;
+    return j.status.toLowerCase() === currentTab;
+  }).length;
+  jobsCount.innerText = tabCount + ' jobs';
+}
+
