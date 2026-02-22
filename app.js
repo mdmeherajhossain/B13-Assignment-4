@@ -178,3 +178,15 @@ function updateDashboard() {
   jobsCount.innerText = tabCount + ' jobs';
 }
 
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document
+      .querySelectorAll('.tab')
+      .forEach(t => t.classList.remove('tab-active'));
+    tab.classList.add('tab-active');
+    currentTab = tab.dataset.tab;
+    renderJobs();
+  });
+});
+
+renderJobs();
